@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.husky.domain.Student" table="student">
+        <id name="sid">
+            <generator class="native"/>
+        </id>
+        <property name="sname"/>
+        <property name="apassword"/>
+
+        <!--对于一对多的关系在多的地方配置 由多的一方维护二者之间的关系
+        一个班级对应多个学生 clazz是1 student是N
+
+        一对多单向:学生对象能找到所在班级信息
+
+      -->
+        <!--many-to-one : 在一对多的关系中 在多的一方配置的关系指向
+        name: 多这一方包含的一这方的对象属性名称
+        class: 一的一方类路径
+        cascade: 级联关系 即操作student会不会影响到calzz
+                 参数值代表哪些操作会影响-->
+        <many-to-one name="clazz" class="com.husky.domain.Clazz" cascade="all">
+
+        </many-to-one>
+    </class>
+</hibernate-mapping>
